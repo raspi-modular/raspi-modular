@@ -13,6 +13,8 @@ use AnyEvent::MQTT;
 
 my $piusv_device = RPi::I2C->new(0x18);
 
+say RPi::I2C->check_device(0x18);
+
 my $i2c_timer = AnyEvent->timer (
 	after => 0,
 	interval => 1,
@@ -20,6 +22,11 @@ my $i2c_timer = AnyEvent->timer (
 		# read status
 		my $status = $piusv_device->read_byte(0x00);
 		my @values = $piusv_device->read_bytes(10, 0x02);
+		my ($battery, $current, $voltage, $voltage_usb, $voltage_external) = unpack ('n5', @values);
+		say $battery;
+		say $current;
+		say $voltage;
+		say $voltage_external;
 	},
 );
 
