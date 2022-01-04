@@ -13,7 +13,7 @@ use AnyEvent::MQTT;
 
 my $piusv_device = RPi::I2C->new(0x18);
 
-say RPi::I2C->check_device(0x18);
+say $piusv_device->check_device(0x18);
 
 my $i2c_timer = AnyEvent->timer (
 	after => 0,
