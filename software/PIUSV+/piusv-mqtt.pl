@@ -22,6 +22,7 @@ my $i2c_timer = AnyEvent->timer (
 		# read status
 		my $status = $piusv_device->read_byte(0x00);
 		my @values = $piusv_device->read_bytes(10, 0x02);
+		say @values;
 		my ($battery, $current, $voltage, $voltage_usb, $voltage_external) = unpack ('n5', @values);
 		say $battery;
 		say $current;
