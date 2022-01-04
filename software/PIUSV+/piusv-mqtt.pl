@@ -21,8 +21,8 @@ my $i2c_timer = AnyEvent->timer (
 	cb => sub {
 		# read status
 		#my $status = $piusv_device->read_byte(0x00);
-		$piusv_device->write(0x02);
-		my @values = $piusv_device->read_bytes(10);
+		#$piusv_device->write(0x02);
+		my @values = $piusv_device->read_bytes(10, 0x02);
 		# say join(':', @values);
 		use Data::Dumper;
 		print Dumper @values;
